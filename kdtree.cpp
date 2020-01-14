@@ -1,5 +1,5 @@
 template typename<T>
-class PointND() {
+class PointND {
   T* pos;
   int dim;
   PointND() : pos(nullptr), dim(0) {}
@@ -44,7 +44,7 @@ class PointND() {
 }
 
 template typename<T>
-class Node() {
+class Node {
   T location;
   Node* left;
   Node* right;
@@ -58,12 +58,14 @@ public:
   }
 
   Node* construct(T* &point_list, int low, int high, int depth, int dim) {
+    if (high < low) return nullptr;
+    
     int axis = depth % dim;
     this->sort_point_axis(point_list, low, high, axis, dim);
 
     int median = (high - low) / 2;
     this->location = point_list[median];
-    
+
     Node* _left = new Node();
     Node* _right = new Node();
     this->left = _left->construct(point_list, low, median - 1, depth + 1, dim);
@@ -78,7 +80,7 @@ public:
 }
 
 template typename<T>
-class KDTree() {
+class KDTree {
   Node<T>* root;
   T* point_list;
   int depth;
