@@ -59,11 +59,11 @@ public:
 
   Node* construct(T* &point_list, int low, int high, int depth, int dim) {
     if (high < low) return nullptr;
-    
+
     int axis = depth % dim;
     this->sort_point_axis(point_list, low, high, axis, dim);
 
-    int median = (high - low) / 2;
+    int median = (high + low) / 2;
     this->location = point_list[median];
 
     Node* _left = new Node();
@@ -83,9 +83,9 @@ template typename<T>
 class KDTree {
   Node<T>* root;
   T* point_list;
-  int depth;
+  int dim;
 public:
-  KDTree() : root(nullptr), point_list(nullptr), depth(0) {}
+  KDTree() : root(nullptr), point_list(nullptr), dim(0) {}
   ~KDTree() {
     this->clean();
   }
@@ -95,15 +95,15 @@ public:
     delete this->point_list;
     this->root = nullptr;
     this->point_list = nullptr;
-    this->depth = 0;
+    this->dim = 0;
   }
 
-  void build(T* &point_list, int size, int depth, int dim) {
+  void build(T* &point_list, int size, int dim) {
     if (this->root != nullptr)
       clean()
     this->point_list = point_list;
-    this->depth = depth;
+    this->dim = dim;
 
-    this->root = this->root->construct(point_list, 0,  size-1, depth, dim);
+    this->root = this->root->construct(point_list, 0,  size-1, dim);
   }
 }
