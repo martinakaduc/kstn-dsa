@@ -104,6 +104,6 @@ public:
     this->point_list = point_list;
     this->dim = dim;
 
-    this->root = this->root->construct(point_list, 0,  size-1, dim);
+    this->root = this->root->construct(point_list, 0,  size-1, 0, dim);
   }
 }
