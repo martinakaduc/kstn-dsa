@@ -1,3 +1,5 @@
+#include "mergesort.h"
+
 template typename<T>
 class PointND {
   T* pos;
@@ -75,7 +77,7 @@ public:
   }
 
   void sort_point_axis(T* &point_list, int low, int high, int axis, int dim) {
-
+    
   }
 }
 
