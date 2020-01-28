@@ -215,7 +215,11 @@ void KDTree<T>::printNLR()
 template <typename T>
 void KDTree<T>::_printNLR(Node<T>* root)
 {
-  if (!root) return;
+  if (!root)
+  {
+    std::cout << "Blank\n";
+    return;
+  }
   root->print();
 
   _printNLR(root->pLeft);
